@@ -13,9 +13,11 @@ function getPosts() {
   }, 1000);
 }
 
-function rejected(result) {
-  console.error(result);
+function rejected() {
+  console.error("something went wrong");
 }
+
+
 //getting is a callback function
 function createPost(post, getting) {
   return new Promise((resolve, reject) => {
@@ -27,12 +29,14 @@ function createPost(post, getting) {
         resolve();
       } else {
         //Promise.reject(console.error("something went wrong"));
-        Promise.reject(new Error("something went wrong")).then(()=>{},
-        rejected);
+        reject("error msg")
+       
       }
     }, 1000);
   });
 }
+
+
 
 createPost({ title: "post3", body: "This is post three" })
   .then(getPosts)
